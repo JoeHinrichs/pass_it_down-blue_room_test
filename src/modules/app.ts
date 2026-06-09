@@ -1,4 +1,5 @@
 import * as pc from 'playcanvas';
+import { initCharacter } from './character';
 
 const canvas = document.getElementById('playcanvas') as HTMLCanvasElement;
 const app = new pc.Application(canvas);
@@ -25,14 +26,26 @@ function loadScene(config: string, scene: string, start_callback: () => void) {
       if (err) {
         console.error(err);
       }
+      app.start();
     });
-    start_callback();
+  });
+
+  app.on('start', function () {
+    if (start_callback) {
+      start_callback();
+    }
   });
 }
 
-function init() {  
+function init() {
 
-  app.start();
+  pc.WasmModule.setConfig('Ammo', {
+    glueUrl: '.files/assets/wasm/ammo/ammo.wasm.js',
+    wasmUrl: './assets/wasm/ammo/ammo.wasm.wasm',
+    fallbackUrl: './assets/wasm/ammo/ammo.js'
+  });
+
+  initCharacter(app);
 
 };
 
