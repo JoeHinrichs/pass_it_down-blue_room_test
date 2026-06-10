@@ -1,4 +1,5 @@
 import * as pc from 'playcanvas';
+
 import { initCharacter } from './character';
 
 const canvas = document.getElementById('playcanvas') as HTMLCanvasElement;
@@ -9,7 +10,7 @@ app.setCanvasResolution(pc.RESOLUTION_AUTO);
 
 window.addEventListener('resize', () => app.resizeCanvas());
 
-loadScene('config.json', '2519726.json', init);
+loadScene('config.json', '2520869.json', init);
 
 function loadScene(config: string, scene: string, start_callback: () => void) {
   var CONFIG_FILENAME = config;
